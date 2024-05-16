@@ -11,7 +11,9 @@
         android:id="@+id/tv_subtitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
+        android:textStyle="italic"
+        android:layout_margin="8dp"
+        android:textSize="18sp"
         android:text="Welcome to: "
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -21,7 +23,8 @@
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
+        android:layout_margin="6dp"
+        android:textStyle="bold"
         android:text="YNAB"
         android:textSize="50sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -32,6 +35,7 @@
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textStyle="italic"
         android:text="(You Need a Budget)"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -84,29 +88,91 @@
         app:layout_constraintTop_toBottomOf="@+id/tv_textview" />
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/materialButton"
+
+        android:id="@+id/btn_market"
         style="@style/Widget.Material3.Button.ElevatedButton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginTop="14dp"
         android:layout_marginEnd="10dp"
-        android:text="Market"
+        android:text="MARKET"
         app:layout_constraintEnd_toStartOf="@+id/gl_guideline"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_car" />
 
 
     <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_bills"
         style="@style/Widget.Material3.Button.ElevatedButton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Bills"
         android:layout_marginStart="10dp"
         android:layout_marginTop="14dp"
         android:layout_marginEnd="10dp"
+        android:text="BILLS"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/gl_guideline"
         app:layout_constraintTop_toBottomOf="@+id/btn_house" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_leisure"
+        style="@style/Widget.Material3.Button.ElevatedButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="10dp"
+        android:textStyle="bold"
+        android:text="LEISURE"
+        app:layout_constraintEnd_toStartOf="@+id/gl_guideline"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_market" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_child"
+        style="@style/Widget.Material3.Button.ElevatedButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="10dp"
+        android:text="CHILD"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/gl_guideline"
+        app:layout_constraintTop_toBottomOf="@+id/btn_bills" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_health"
+        style="@style/Widget.Material3.Button.ElevatedButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="HEALTH"
+        android:textStyle="bold"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="10dp"
+        app:layout_constraintEnd_toStartOf="@+id/gl_guideline"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_leisure" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_vesture"
+        style="@style/Widget.Material3.Button.ElevatedButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="VESTURE"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/gl_guideline"
+        app:layout_constraintTop_toBottomOf="@+id/btn_child"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="10dp"
+        android:textStyle="bold"
+        />
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
