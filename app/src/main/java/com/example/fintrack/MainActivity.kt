@@ -22,6 +22,34 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, CarExpenses::class.java)
             startActivity(intent)
         }
+        binding.btnHouse.setOnClickListener {
+            val intent = Intent(this, HouseExpenses::class.java)
+            startActivity(intent)
+        }
+        binding.btnMarket.setOnClickListener {
+            val intent = Intent(this, MarketExpenses::class.java)
+            startActivity(intent)
+        }
+        binding.btnBills.setOnClickListener {
+            val intent = Intent(this, BillsExpenses::class.java)
+            startActivity(intent)
+        }
+        binding.btnLeisure.setOnClickListener {
+            val intent = Intent(this, LeisureExpenses::class.java)
+            startActivity(intent)
+        }
+        binding.btnChild.setOnClickListener {
+            val intent = Intent(this, ChildExpenses::class.java)
+            startActivity(intent)
+        }
+        binding.btnHealth.setOnClickListener {
+            val intent = Intent(this, HealthExpenses::class.java)
+            startActivity(intent)
+        }
+        binding.btnVesture.setOnClickListener {
+            val intent = Intent(this, VestureExpenses::class.java)
+            startActivity(intent)
+        }
     }
 
 

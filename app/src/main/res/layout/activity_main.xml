@@ -96,6 +96,7 @@
         android:layout_marginStart="10dp"
         android:layout_marginTop="14dp"
         android:layout_marginEnd="10dp"
+        android:textStyle="bold"
         android:text="MARKET"
         app:layout_constraintEnd_toStartOf="@+id/gl_guideline"
         app:layout_constraintStart_toStartOf="parent"
@@ -172,6 +173,20 @@
         android:layout_marginEnd="10dp"
         android:textStyle="bold"
         />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_new_categorie"
+        style="@style/Widget.Material3.Button.ElevatedButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="10dp"
+        android:text="+ NEW CATEGORIE"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/gl_guideline"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_health" />
 
 
 

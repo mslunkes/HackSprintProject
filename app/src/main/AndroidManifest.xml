@@ -13,6 +13,27 @@
         android:theme="@style/Theme.FinTrack"
         tools:targetApi="31">
         <activity
+            android:name=".VestureExpenses"
+            android:exported="false" />
+        <activity
+            android:name=".HealthExpenses"
+            android:exported="false" />
+        <activity
+            android:name=".ChildExpenses"
+            android:exported="false" />
+        <activity
+            android:name=".LeisureExpenses"
+            android:exported="false" />
+        <activity
+            android:name=".BillsExpenses"
+            android:exported="false" />
+        <activity
+            android:name=".MarketExpenses"
+            android:exported="false" />
+        <activity
+            android:name=".HouseExpenses"
+            android:exported="false" />
+        <activity
             android:name=".CarExpenses"
             android:exported="false" />
         <activity
