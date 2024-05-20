@@ -15,6 +15,7 @@
         android:layout_margin="8dp"
         android:textSize="18sp"
         android:text="Welcome to: "
+        android:textStyle="italic"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -27,6 +28,7 @@
         android:textStyle="bold"
         android:text="YNAB"
         android:textSize="50sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_subtitle" />
@@ -37,6 +39,7 @@
         android:layout_height="wrap_content"
         android:textStyle="italic"
         android:text="(You Need a Budget)"
+        android:textStyle="italic"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
@@ -64,9 +67,9 @@
         style="@style/Widget.Material3.Button.ElevatedButton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="10dp"
         android:layout_marginStart="10dp"
+        android:layout_marginTop="14dp"
+        android:layout_marginEnd="10dp"
         android:text="CAR"
         android:textStyle="bold"
         app:layout_constraintEnd_toStartOf="@+id/gl_guideline"
@@ -78,9 +81,9 @@
         style="@style/Widget.Material3.Button.ElevatedButton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="10dp"
-        android:layout_marginTop="10dp"
         android:layout_marginStart="10dp"
+        android:layout_marginTop="14dp"
+        android:layout_marginEnd="10dp"
         android:text="HOUSE"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -88,7 +91,6 @@
         app:layout_constraintTop_toBottomOf="@+id/tv_textview" />
 
     <com.google.android.material.button.MaterialButton
-
         android:id="@+id/btn_market"
         style="@style/Widget.Material3.Button.ElevatedButton"
         android:layout_width="0dp"
@@ -96,8 +98,8 @@
         android:layout_marginStart="10dp"
         android:layout_marginTop="14dp"
         android:layout_marginEnd="10dp"
-        android:textStyle="bold"
         android:text="MARKET"
+        android:textStyle="bold"
         app:layout_constraintEnd_toStartOf="@+id/gl_guideline"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_car" />
@@ -123,6 +125,39 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
+
+        android:layout_marginTop="20dp"
+        android:text="CHILDREN"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_bills" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/mb_create"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:text="Create a new category"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/gl_guideline"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_children" />
+
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/mb_total"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:text="Vizualize your total expenses"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/gl_guideline"
+        app:layout_constraintTop_toBottomOf="@+id/btn_children" />
         android:layout_marginTop="16dp"
         android:layout_marginEnd="10dp"
         android:textStyle="bold"
@@ -187,7 +222,6 @@
         app:layout_constraintEnd_toStartOf="@+id/gl_guideline"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_health" />
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

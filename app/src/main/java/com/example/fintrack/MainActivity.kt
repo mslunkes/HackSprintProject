@@ -10,13 +10,13 @@ import com.example.fintrack.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityMainBinding
+  private lateinit var binding: ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
+        lateinit var binding: ActivityMainBinding
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
-
-
         setContentView(binding.root)
+      
 
         binding.btnCar.setOnClickListener {
             val intent = Intent(this, CarExpenses::class.java)
