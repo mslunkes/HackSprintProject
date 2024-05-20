@@ -6,8 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".CarExpenses">
-
-
+  
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
@@ -37,4 +36,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView2"
         tools:listitem="@layout/expenses_list" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

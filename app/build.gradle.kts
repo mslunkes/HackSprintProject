@@ -16,11 +16,14 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-
+   
+    AdapterBranch
         buildFeatures{
             viewBinding = true
         }
-    }
+     }
+    
+
 
     buildTypes {
         release {
@@ -37,6 +40,10 @@ android {
     }
     kotlinOptions {
         jvmTarget = "1.8"
+    }
+    viewBinding{
+        enable = true
+
     }
 }
 
@@ -56,5 +63,7 @@ dependencies {
     implementation(libs.room.runtime)
     implementation(libs.room.paging)
     implementation(libs.room.ktx)
+
+    implementation (libs.androidx.lifecycle.viewmodel.ktx)
 
 }
