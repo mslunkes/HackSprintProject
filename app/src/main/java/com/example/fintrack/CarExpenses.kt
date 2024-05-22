@@ -24,7 +24,6 @@ class CarExpenses : AppCompatActivity() {
         rvExpenses.adapter = adapter
         rvExpenses.layoutManager = LinearLayoutManager(this)
         adapter.submitList(expenses)
-
     }
 }
 

@@ -29,23 +29,21 @@ class ExpensesAdapter: ListAdapter
 
         private val tvType = view.findViewById<TextView>(R.id.tv_type)
         private val tvPrice = view.findViewById<TextView>(R.id.tv_price)
-        fun bind(expenses: Expenses){
+        fun bind(expenses: Expenses) {
             tvType.text = expenses.type
             tvPrice.text = expenses.price
         }
 
     }
-
-    class ExpensesDiffUtil : DiffUtil.ItemCallback<Expenses>(){
+    class ExpenseDiffUtils : DiffUtil.ItemCallback<Expenses>() {
         override fun areItemsTheSame(oldItem: Expenses, newItem: Expenses): Boolean {
             return oldItem == newItem
         }
 
         override fun areContentsTheSame(oldItem: Expenses, newItem: Expenses): Boolean {
             return oldItem.type == newItem.type
-
         }
-
     }
-
 }
+
+       
