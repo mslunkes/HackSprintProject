@@ -1,6 +1,7 @@
 package com.example.fintrack.Data
 
 data class Expenses(
-    val type: String,
+    val title: String,
     val price: String,
+    val category:String,
 )

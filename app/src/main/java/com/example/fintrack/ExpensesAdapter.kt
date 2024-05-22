@@ -9,8 +9,9 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.fintrack.Data.Expenses
 
-class ExpensesAdapter: ListAdapter
-<Expenses, ExpensesAdapter.ExpensesViewHolder>(ExpensesDiffUtil()) {
+class ExpensesAdapter(private val openExpenseDetail: (expenses: Expenses) -> Unit):
+    ListAdapter
+<Expenses, ExpensesAdapter.ExpensesViewHolder>(ExpenseDiffUtils()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ExpensesViewHolder {
         val view = LayoutInflater.
@@ -27,10 +28,10 @@ class ExpensesAdapter: ListAdapter
 
     class ExpensesViewHolder(view: View) : RecyclerView.ViewHolder(view){
 
-        private val tvType = view.findViewById<TextView>(R.id.tv_type)
+        private val tvType = view.findViewById<TextView>(R.id.tv_title)
         private val tvPrice = view.findViewById<TextView>(R.id.tv_price)
         fun bind(expenses: Expenses) {
-            tvType.text = expenses.type
+            tvType.text = expenses.title
             tvPrice.text = expenses.price
         }
 
@@ -41,7 +42,7 @@ class ExpensesAdapter: ListAdapter
         }
 
         override fun areContentsTheSame(oldItem: Expenses, newItem: Expenses): Boolean {
-            return oldItem.type == newItem.type
+            return oldItem.title == newItem.title
         }
     }
 }
