@@ -5,7 +5,9 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.fintrack.Data.Expenses
 
 class CarExpenses : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -17,33 +19,29 @@ class CarExpenses : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-
-        // criar data class
-        // criar lista de gastos do tipo data class
-        // criar adapter
-        // settar adapter
-        // linear layout manager
-        val rvExpenses: RecyclerView = findViewById(R.id.rv_expenses)
+        val rvExpenses = findViewById<RecyclerView>(R.id.rv_expenses)
+        val adapter = ExpensesAdapter()
+        rvExpenses.adapter = adapter
+        rvExpenses.layoutManager = LinearLayoutManager(this)
+        adapter.submitList(expenses)
     }
 }
 
-    private val expenses = listOf(
+private val expenses = listOf(
     Expenses(
-        "Fuel"
+        "Fuel",
         "$20.00"
     ),
     Expenses(
-        "Battery"
+        "Battery",
         "$300.00"
     ),
     Expenses(
-        "Engine Oil"
+        "Engine Oil",
         "$30.00"
     ),
     Expenses(
-        "Maintenance"
+        "Maintenance",
         "$90.00"
-    ),
+    )
 )
-    }
-}

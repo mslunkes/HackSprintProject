@@ -1,34 +1,34 @@
 package com.example.fintrack
 
-import android.view.TextureView
+import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.example.fintrack.Data.Expenses
 
+class ExpensesAdapter: ListAdapter
+<Expenses, ExpensesAdapter.ExpensesViewHolder>(ExpensesDiffUtil()) {
 
-// adaptação entre data class e um layout (expenses_list)
-class ExpensesAdapter:
-    ListAdapter<Expenses, ExpensesAdapter.ExpensesViewHolder>(ExpensesViewHolder.ExpenseDiffUtils) {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ExpensesViewHolder {
+        val view = LayoutInflater.
+        from(parent.context).inflate(R.layout.expenses_list, parent, false)
+        return  ExpensesViewHolder(view)
 
-        //criar um viewholder
-        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ExpensesViewHolder {
-        TODO("Not yet implemented")
     }
 
-        //bind = atrelar o dado com a UI views
-        override fun onBindViewHolder(holder: ExpensesViewHolder, position: Int) {
-        TODO("Not yet implemented")
-        }
+    override fun onBindViewHolder(holder: ExpensesViewHolder, position: Int) {
+        val contact = getItem(position)
+        holder.bind(contact)
     }
 
-    //view que segura os  dados
-    class ExpensesViewHolder(view: View): RecyclerView.ViewHolder(view) {
 
-        private val tvType = view.findViewById<TextureView>(R.id.tv_type)
-        private val tvPrice = view.findViewById<TextureView>(R.id.tv_price)
+    class ExpensesViewHolder(view: View) : RecyclerView.ViewHolder(view){
 
+        private val tvType = view.findViewById<TextView>(R.id.tv_type)
+        private val tvPrice = view.findViewById<TextView>(R.id.tv_price)
         fun bind(expenses: Expenses) {
             tvType.text = expenses.type
             tvPrice.text = expenses.price
@@ -44,3 +44,6 @@ class ExpensesAdapter:
             return oldItem.type == newItem.type
         }
     }
+}
+
+       
