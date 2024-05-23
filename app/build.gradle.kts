@@ -17,7 +17,7 @@ android {
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
    
-    AdapterBranch
+
         buildFeatures{
             viewBinding = true
         }
@@ -58,11 +58,18 @@ dependencies {
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
 
+    implementation(libs.kotlinx.coroutines.core)
+    implementation(libs.kotlinx.coroutines.android)
+
     //Room
     kapt(libs.room.compiler)
     implementation(libs.room.runtime)
     implementation(libs.room.paging)
+    annotationProcessor(libs.room.compiler)
     implementation(libs.room.ktx)
+
+
+    implementation(libs.androidx.lifecycle.runtime.ktx)
 
     implementation (libs.androidx.lifecycle.viewmodel.ktx)
 

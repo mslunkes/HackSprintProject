@@ -4,12 +4,27 @@ import android.app.Application
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
+
 
 class ExpensesViewModel(
     private val expensesDao: ExpensesDao,
     private val categoryDao: CategoryDao
 ): ViewModel() {
+
+    private val _expenses= MutableStateFlow<List<ExpensesEntity>>(emptyList())
+    val expenses:StateFlow<List<ExpensesEntity>>get()= _expenses
+
+    init {
+        viewModelScope.launch {
+            expensesDao.getAllExpenses()
+
+        }
+    }
+
+
 
     private fun deleteCategory(categoryEntity: CategoryEntity){
         viewModelScope.launch {
