@@ -1,6 +1,5 @@
 package com.example.fintrack
 
-import android.app.Application
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,15 +7,13 @@ import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.fintrack.Data.Expenses
-import com.example.fintrack.Data.ExpensesApplication
-import com.example.fintrack.Data.ExpensesViewModel
+import com.example.fintrack.Data.ExpensesEntity
 
 class ExpensesAdapter():
     ListAdapter
-<Expenses, ExpensesAdapter.ExpensesViewHolder>(ExpenseDiffUtils()) {
+<ExpensesEntity, ExpensesAdapter.ExpensesViewHolder>(ExpenseDiffUtils()) {
 
-    private lateinit var onClickListener:(Expenses)-> Unit
+    private lateinit var onClickListener:(ExpensesEntity)-> Unit
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ExpensesViewHolder {
         val view = LayoutInflater.
@@ -26,11 +23,11 @@ class ExpensesAdapter():
     }
 
     override fun onBindViewHolder(holder: ExpensesViewHolder, position: Int) {
-        val contact = getItem(position)
-        holder.bind(contact, onClickListener)
+        val expense = getItem(position)
+        holder.bind(expense, onClickListener)
     }
 
-    fun setOnClickListener(onClick:(Expenses)-> Unit){
+    fun setOnClickListener(onClick:(ExpensesEntity)-> Unit){
         onClickListener= onClick
 
     }
@@ -40,21 +37,21 @@ class ExpensesAdapter():
 
         private val tvType = view.findViewById<TextView>(R.id.tv_title)
         private val tvPrice = view.findViewById<TextView>(R.id.tv_price)
-        fun bind(expenses: Expenses, onClick:(Expenses)-> Unit) {
-            tvType.text = expenses.title
-            tvPrice.text = expenses.price
+        fun bind(expensesEntity: ExpensesEntity, onClick:(ExpensesEntity)-> Unit) {
+            tvType.text = expensesEntity.title
+            tvPrice.text = expensesEntity.price
 
-            view.setOnClickListener { onClick.invoke(expenses) }
+            view.setOnClickListener { onClick.invoke(expensesEntity) }
         }
 
 
     }
-    class ExpenseDiffUtils : DiffUtil.ItemCallback<Expenses>() {
-        override fun areItemsTheSame(oldItem: Expenses, newItem: Expenses): Boolean {
+    class ExpenseDiffUtils : DiffUtil.ItemCallback<ExpensesEntity>() {
+        override fun areItemsTheSame(oldItem: ExpensesEntity, newItem: ExpensesEntity): Boolean {
             return oldItem == newItem
         }
 
-        override fun areContentsTheSame(oldItem: Expenses, newItem: Expenses): Boolean {
+        override fun areContentsTheSame(oldItem: ExpensesEntity, newItem: ExpensesEntity): Boolean {
             return oldItem.title == newItem.title
         }
     }

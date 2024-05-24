@@ -2,8 +2,11 @@ package com.example.fintrack
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.fintrack.Data.ExpensesViewModel
 import com.example.fintrack.databinding.ActivityMainBinding
 import kotlinx.coroutines.launch
@@ -27,10 +30,21 @@ class MainActivity : AppCompatActivity() {
         val adapter = ExpensesAdapter()
         val rvList = binding.recicleView
 
-        rvList.adapter = adapter
+        binding.recicleView.adapter = adapter
+        binding.recicleView.layoutManager = LinearLayoutManager(this)
+
+
 
         lifecycleScope.launch {
-            viewModel.
+            repeatOnLifecycle(Lifecycle.State.STARTED){
+                viewModel.expensesEntity.collect{
+                    adapter.submitList(it)
+
+
+                }
+
+            }
+
         }
 
 
@@ -39,9 +53,23 @@ class MainActivity : AppCompatActivity() {
 
         }
 
+        binding.floatActionButton.setOnClickListener{
+            openExpenseDetail()
+
+        }
+
+
+
+
+
       
 
 
+    }
+
+    private fun openExpenseDetail(){
+        val intent = ExpenseDetail.start(this,null)
+        startActivity(intent)
     }
 
 

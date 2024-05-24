@@ -7,13 +7,16 @@ import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Update
 import androidx.room.Upsert
+import kotlinx.coroutines.flow.Flow
 
 
 @Dao
 interface ExpensesDao {
 
     @Query ("Select * From expensesentity")
-    fun getAllExpenses(): List<ExpensesEntity>
+    fun getAllExpenses(): Flow<List<ExpensesEntity>>
+    @Insert(onConflict = OnConflictStrategy. REPLACE)
+    fun insert(expenseEntity: ExpensesEntity)
     @Query ("Select * From expensesentity where category is :categoryName")
     fun getAllByCategoryName(categoryName:String): List<ExpensesEntity>
     @Insert(onConflict = OnConflictStrategy. REPLACE)

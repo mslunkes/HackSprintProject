@@ -1,60 +1,45 @@
-package com.example.fintrack.Data
+package com.example.fintrack
 
 import android.app.Application
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
+import com.example.fintrack.Data.CategoryDao
+import com.example.fintrack.Data.ExpensesApplication
+import com.example.fintrack.Data.ExpensesDao
+import com.example.fintrack.Data.ExpensesEntity
+import com.example.fintrack.Data.ExpensesViewModel
 import kotlinx.coroutines.launch
 
-
-class ExpensesViewModel(
+class ExpenseDetailViewModel(
     private val expensesDao: ExpensesDao,
     private val categoryDao: CategoryDao
-): ViewModel() {
+) : ViewModel(){
 
-    private val _expensesEntity= MutableStateFlow<List<ExpensesEntity>>(emptyList())
-    val expensesEntity:StateFlow<List<ExpensesEntity>> = _expensesEntity
+    fun execute(expenseAction: ExpenseAction) {
 
+        //ação do actiontype
+        when (expenseAction.ActionType) {
+            ActionType.DELETE.name -> deleteById(expenseAction.expense!!.id)
+            ActionType.CREATE.name -> insertIntoDataBase(expenseAction.expense!!)
+            ActionType.UPDATE.name -> updateIntoDataBase(expenseAction.expense!!)
+        }
+    }
 
-
-    init {
+    private fun insertIntoDataBase(expense: ExpensesEntity) {
         viewModelScope.launch {
-            expensesDao.getAllExpenses().collect{expenses ->
-                _expensesEntity.value = expenses
+            expensesDao.insert(expense)
+        }
+    }
 
-            }
-
+    private fun updateIntoDataBase(expense: ExpensesEntity) {
+        viewModelScope.launch {
+            expensesDao.update(expense)
         }
     }
 
 
-
-    private fun deleteCategory(categoryEntity: CategoryEntity){
-        viewModelScope.launch {
-            val expensesToBeDeleted = expensesDao.getAllByCategoryName(categoryEntity.name)
-            expensesDao.deleteAll(expensesToBeDeleted)
-            categoryDao.delete(categoryEntity)
-            expensesDao.getAllExpenses()
-            categoryDao.getAllCategories()
-        }
-    }
-
-    private fun deleteExpense(expensesEntity: ExpensesEntity){
-        viewModelScope.launch {
-            expensesDao.delete(expensesEntity)
-
-        }
-    }
-
-    private fun upsertExpense(expensesEntity: ExpensesEntity){
-        viewModelScope.launch {
-            expensesDao.upsert(expensesEntity)
-        }
-    }
-
-    private fun deleteById(id:Int){
+    private fun deleteById(id: Int) {
         viewModelScope.launch {
             expensesDao.deleteById(id)
         }
@@ -62,7 +47,7 @@ class ExpensesViewModel(
 
 
     /*para utilizar viewmModel com by viewmodel e poder rotarcionar a tela sem perder o que foi
-     digitado*/
+    digitado*/
     companion object {
         fun getVMFactory(application: Application): ViewModelProvider.Factory {
             val dataBaseInstance = (application as ExpensesApplication).getAppDataBase()
