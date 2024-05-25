@@ -55,7 +55,7 @@ class ExpenseDetailViewModel(
             val categoryDao = dataBaseInstance.categoryDao()
             val factory = object : ViewModelProvider.Factory {
                 override fun <T : ViewModel> create(modelClass: Class<T>): T {
-                    return ExpensesViewModel(expensesDao,categoryDao) as T
+                    return ExpenseDetailViewModel(expensesDao,categoryDao) as T
                 }
             }
             return factory

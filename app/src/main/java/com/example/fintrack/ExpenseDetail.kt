@@ -3,6 +3,7 @@ package com.example.fintrack
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.ui.AppBarConfiguration
@@ -43,13 +44,25 @@ class ExpenseDetail : AppCompatActivity() {
         if(expense != null){
             binding.edtExpensetitle.setText(expense!!.title)
             binding.edtPrice.setText(expense!!.price)
+            binding.edtCategoryDetail.setText(expense!!.category)
         }
 
         binding.btnDone.setOnClickListener{
             val title = binding.edtExpensetitle.text.toString()
             val price = binding.edtPrice.text.toString()
-        }
+            val category = binding.edtCategoryDetail.text.toString()
 
+            if (title.isNotEmpty() && price.isNotEmpty() && category.isNotEmpty()){
+                if (expense == null){
+                    addOrUpdateExpense(0,title,price,category,ActionType.CREATE)
+                } else {
+                    addOrUpdateExpense(expense!!.id,title,price,category,ActionType.UPDATE)
+                }
+            } else {
+                showMessage(binding.btnDone,"Adicione uma despesa")
+            }
+
+        }
 
 
 
@@ -74,5 +87,11 @@ class ExpenseDetail : AppCompatActivity() {
         val expenseAction = ExpenseAction(expense, actionType.name)
         viewModel.execute(expenseAction)
         finish()
+    }
+
+    private fun showMessage(view: View, message: String) {
+        Snackbar.make(view, message, Snackbar.LENGTH_LONG)
+            .setAction("Action", null)
+            .show()
     }
 }

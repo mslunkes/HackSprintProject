@@ -16,19 +16,17 @@ interface ExpensesDao {
     @Query ("Select * From expensesentity")
     fun getAllExpenses(): Flow<List<ExpensesEntity>>
     @Insert(onConflict = OnConflictStrategy. REPLACE)
-    fun insert(expenseEntity: ExpensesEntity)
-    @Query ("Select * From expensesentity where category is :categoryName")
-    fun getAllByCategoryName(categoryName:String): List<ExpensesEntity>
+    suspend fun insert(expenseEntity: ExpensesEntity)
     @Insert(onConflict = OnConflictStrategy. REPLACE)
-    fun insertAll(expensesEntities: List<ExpensesEntity>)
+    suspend fun insertAll(expensesEntities: List<ExpensesEntity>)
     @Upsert()
-    fun upsert(expensesEntity: ExpensesEntity)
+    suspend fun upsert(expensesEntity: ExpensesEntity)
     @Update
-    fun update(expenseEntity: ExpensesEntity)
+    suspend fun update(expenseEntity: ExpensesEntity)
     @Delete
-    fun delete(expenseEntity: ExpensesEntity)
+    suspend fun delete(expenseEntity: ExpensesEntity)
     @Delete
-    fun deleteAll(expenseEntity: List<ExpensesEntity>)
+    suspend fun deleteAll(expenseEntity: List<ExpensesEntity>)
     @Query("delete from expensesentity WHERE id = :id")
     suspend fun deleteById(id: Int)
 }

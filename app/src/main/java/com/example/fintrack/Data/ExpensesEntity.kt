@@ -2,6 +2,7 @@ package com.example.fintrack.Data
 
 import androidx.room.Entity
 import androidx.room.ForeignKey
+import androidx.room.Index
 import androidx.room.PrimaryKey
 import java.io.Serializable
 
@@ -10,7 +11,8 @@ import java.io.Serializable
         ForeignKey(
             entity = CategoryEntity::class,
             parentColumns = ["key"],
-            childColumns = ["category"]
+            childColumns = ["category"],
+            onDelete = ForeignKey.CASCADE
         )
     ]
 )

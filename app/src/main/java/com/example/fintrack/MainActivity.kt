@@ -27,29 +27,41 @@ class MainActivity : AppCompatActivity() {
         val factory = ExpensesViewModel.getVMFactory(application)
         viewModel = ViewModelProvider(this, factory)[ExpensesViewModel::class.java]
 
-        val adapter = ExpensesAdapter()
-        val rvList = binding.recicleView
+        val expenseAdapter = ExpensesAdapter()
+        val categoryAdapter = CategoryAdapter()
 
-        binding.recicleView.adapter = adapter
+
+        binding.recicleView.adapter = expenseAdapter
+        binding.recicleViewCategory.adapter = categoryAdapter
         binding.recicleView.layoutManager = LinearLayoutManager(this)
+        binding.recicleViewCategory.layoutManager = LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false)
 
 
 
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED){
                 viewModel.expensesEntity.collect{
-                    adapter.submitList(it)
-
-
+                    expenseAdapter.submitList(it)
                 }
 
             }
+        }
 
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED){
+
+                viewModel.categoryEntity.collect{
+                    categoryAdapter.submitList(it)
+                }
+
+            }
         }
 
 
-       // adapter.submitList()
-        adapter.setOnClickListener { expense->
+
+
+        expenseAdapter.setOnClickListener { expense->
+            openExpenseDetail()
 
         }
 

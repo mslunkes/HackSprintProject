@@ -17,6 +17,9 @@ class ExpensesViewModel(
     private val _expensesEntity= MutableStateFlow<List<ExpensesEntity>>(emptyList())
     val expensesEntity:StateFlow<List<ExpensesEntity>> = _expensesEntity
 
+    private val _categoryEntity= MutableStateFlow<List<CategoryEntity>>(emptyList())
+    val categoryEntity:StateFlow<List<CategoryEntity>> = _categoryEntity
+
 
 
     init {
@@ -25,7 +28,9 @@ class ExpensesViewModel(
                 _expensesEntity.value = expenses
 
             }
-
+        }
+        viewModelScope.launch {
+            categoryDao.getAllCategories().collect{ }
         }
     }
 
@@ -33,7 +38,7 @@ class ExpensesViewModel(
 
     private fun deleteCategory(categoryEntity: CategoryEntity){
         viewModelScope.launch {
-            val expensesToBeDeleted = expensesDao.getAllByCategoryName(categoryEntity.name)
+            val expensesToBeDeleted = categoryDao.getAllByCategoryName(categoryEntity.name)
             expensesDao.deleteAll(expensesToBeDeleted)
             categoryDao.delete(categoryEntity)
             expensesDao.getAllExpenses()
@@ -54,9 +59,16 @@ class ExpensesViewModel(
         }
     }
 
-    private fun deleteById(id:Int){
+    private fun deleteExpenseById(id:Int){
         viewModelScope.launch {
             expensesDao.deleteById(id)
+
+        }
+    }
+    private fun deleteCategoryById(id:Int){
+        viewModelScope.launch {
+            categoryDao.deleteById(id)
+
         }
     }
 
